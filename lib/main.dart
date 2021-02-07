@@ -198,11 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final bool isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar = useCupertino
+  PreferredSizeWidget _buildAppBar() {
+    return useCupertino
         ? CupertinoNavigationBar(
             middle: Text('Personal Expenses'),
             trailing: Row(
@@ -224,6 +221,13 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final PreferredSizeWidget appBar = _buildAppBar();
 
     final transactionListWidget = Container(
       height: (mediaQuery.size.height -
